@@ -6,8 +6,7 @@
 class MelonType(object):
     """A species of melon at a melon farm."""
 
-    def __init__(self, code, first_harvest, color, is_seedless, is_bestseller, 
-                 name):
+    def __init__(self, name, code, first_harvest, color, is_seedless, is_bestseller):
         """Initialize a melon."""
 
         self.pairings = []
@@ -37,6 +36,26 @@ def make_melon_types():
     all_melon_types = []
 
     # Fill in the rest
+
+    cantaloupe = MelonType('Cantaloupe', 'cant', 2005, 'peach green mix', True, True)
+    cantaloupe.add_pairing('parma ham')
+
+    musk = MelonType('Muskmelon', 'musk', 1998, 'green', True, True)
+    musk.add_pairing('mint')
+    
+    casaba = MelonType('Casaba', 'cas', 2003, 'orange', False, False)
+    casaba.add_pairing('strawberries and mint')
+
+    crenshaw = MelonType('Crenshaw', 'cren', 1996, 'green', False, False)
+    crenshaw.add_pairing('proscuitto')
+
+    yellow_watermelon = MelonType('Yellow Watermelon', 'yw', 2013, 'yellow', True, True)
+    yellow_watermelon.add_pairing('ice cream')
+
+    all_melon_types.extend([cantaloupe, musk, casaba, crenshaw, yellow_watermelon])
+
+    # for melon_type in all_melon_types:
+    #     print(melon_type.name)
 
     return all_melon_types
 
