@@ -44,7 +44,8 @@ def make_melon_types():
     musk.add_pairing('mint')
     
     casaba = MelonType('Casaba', 'cas', 2003, 'orange', False, False)
-    casaba.add_pairing('strawberries and mint')
+    casaba.add_pairing('strawberries')
+    casaba.add_pairing('mint')
 
     crenshaw = MelonType('Crenshaw', 'cren', 1996, 'green', False, False)
     crenshaw.add_pairing('proscuitto')
@@ -55,7 +56,7 @@ def make_melon_types():
     all_melon_types.extend([cantaloupe, musk, casaba, crenshaw, yellow_watermelon])
 
     # for melon_type in all_melon_types:
-    #     print(melon_type.name)
+    #     print(melon_type.pairings)
 
     return all_melon_types
 
@@ -73,10 +74,12 @@ def make_melon_type_lookup(melon_types):
     """Takes a list of MelonTypes and returns a dictionary of melon type by code."""
 
     melon_type_dict = {}
+
     for melon_type in melon_types:
         melon_type_dict[melon_type.code] = melon_type
 
     # print(melon_type_dict)
+    return melon_type_dict
     # Fill in the rest
 
 ############
@@ -85,14 +88,30 @@ def make_melon_type_lookup(melon_types):
 
 class Melon(object):
     """A melon in a melon harvest."""
-
     # Fill in the rest
-    # Needs __init__ and is_sellable methods
+
+    def __init__(self, melon_type, shape_rating, color_rating, harvested_from_field, harvested_by):
+        self.melon_type = melon_type
+        self.shape_rating = shape_rating
+        self.color_rating = color_rating
+        self.harvested_from_field = harvested_from_field
+        self.harvested_by = harvested_by
+
+    def is_sellable(self):
+
+        return self.shape_rating > 5 and self.color_rating > 5 and self.harvested_from_field != 3
+
 
 def make_melons(melon_types):
     """Returns a list of Melon objects."""
 
-    # Fill in the rest
+    melons_by_id = make_melon_type_lookup(melon_types)
+
+    yellow_watermelon1 = Melon("yw", 8, 7, 2, "Sheila")
+    yellow_watermelon2 = Melon ("yw", 7, 10, 3, "Sheila")
+    muskmelon = Melon("musk", 6, 7, 4, "Michael")
+
+    print(melons_by_id)
 
 def get_sellability_report(melons):
     """Given a list of melon object, prints whether each one is sellable."""
